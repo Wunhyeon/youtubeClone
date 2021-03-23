@@ -3,10 +3,12 @@ include mixins/videoBlock
 
 block content 
     .videos 
-        each video in videos 
+        //- each video in videos 
+        each item in videos 
+            //- p #{item.fileUrl}
             +videoBlock({
-                id : video.id,
-                title : video.title,
-                videoFile : video.videoFile,
-                views : video.views
+                id : item.id,
+                title : item.title,
+                videoFile : item.fileUrl,
+                views : item.views
             })

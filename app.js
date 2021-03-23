@@ -15,6 +15,9 @@ const PORT = 4000;
 
 app.use(helmet());
 app.set("view engine", "pug");
+
+app.use("/uploads", express.static("uploads"));
+
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(express.json());
