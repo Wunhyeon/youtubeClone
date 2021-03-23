@@ -1,11 +1,19 @@
 import path from "path";
-import { db } from "../db";
+// import { db } from "../db";
 import routes from "../routes";
+import Video from "../models/Video";
 
-export const home = (req, res) => {
+export const home = async (req, res) => {
   //   let p = path.join("..", "views", "home.pug");
   //   res.render(p);
-  res.render("home", { pageTitle: "Home", videos: db });
+  try {
+    const videos = (await Video.findOne({})) || [];
+    console.log("videos : ", videos);
+    res.render("home", { pageTitle: "Home", videos });
+  } catch (err) {
+    console.log("err : ", err);
+    res.render("home", { pageTitle: "Home", videos: [] });
+  }
 };
 
 export const search = (req, res) => {
